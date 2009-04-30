@@ -133,6 +133,7 @@ describe Lockdown::Frameworks::Rails::Controller::Lock do
 
       request = mock("request")
       request.stub!(:method).and_return(:get)
+      @controller.stub!(:params).and_return({})
       @controller.stub!(:request).and_return(request)
 
       stonean_parts = ["http", nil, "stonean.com", nil, nil, "posts/index", nil, nil, nil]

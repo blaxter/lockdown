@@ -30,6 +30,11 @@ describe Lockdown::Frameworks::Rails do
 
       ActionView::Base.should_receive(:class_eval)
 
+      ActionController::Base.should_receive(:helper_method)
+      ActionController::Base.should_receive(:before_filter)
+      ActionController::Base.should_receive(:filter_parameter_logging)
+      ActionController::Base.should_receive(:rescue_from)
+
       ActionController::Base.should_receive(:class_eval)
 
       Lockdown::System.should_receive(:class_eval)
