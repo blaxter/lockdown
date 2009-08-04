@@ -1,7 +1,7 @@
 module Lockdown
   module Helper
     def class_name_from_file(str)
-      str.split(".")[0].split("/").collect{|s| camelize(s) }.join("::")
+      str.split("/").collect{|s| camelize(s) }.join("::")
     end
 
     # If str_sym is a Symbol (:users), return "Users"

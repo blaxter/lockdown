@@ -101,8 +101,16 @@ module Lockdown
 
           Dir.chdir("#{Lockdown.project_root}/app/controllers") do
             Dir["**/*.rb"].sort.each do |c|
-              next if c == "application.rb"
+              c = c.split('.').first
+              next if c == "application"
               lockdown_load(c) 
+            end
+            if PLATFORM =~ /java/
+              Dir["**/*.class"].sort.each do |c|
+                c = c.split('.').first
+                next if c == "application"
+                lockdown_load(c)
+              end
             end
           end
 

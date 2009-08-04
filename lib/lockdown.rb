@@ -29,10 +29,10 @@ module Lockdown
         raise NotImplementedError, "ORM unknown to Lockdown!"
       end
 
-      if File.exists?(Lockdown.init_file)
+      begin
         puts "=> Requiring Lockdown rules engine: #{Lockdown.init_file} \n"
         require Lockdown.init_file
-      else
+      rescue
         puts "=> Note:: Lockdown couldn't find init file: #{Lockdown.init_file}\n"
       end
     else
