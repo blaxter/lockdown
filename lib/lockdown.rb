@@ -52,10 +52,10 @@ module Lockdown
     def maybe_parse_init
       return if Lockdown::System.initialized?
 
-      if File.exists?(Lockdown.init_file)
-        Lockdown.logger.info "=> Requiring Lockdown rules engine: #{Lockdown.init_file} \n"
+      begin
+        puts "=> Requiring Lockdown rules engine: #{Lockdown.init_file} \n"
         load Lockdown.init_file
-      else
+      rescue LoadError
         Lockdown.logger.info "=> Note:: Lockdown couldn't find init file: #{Lockdown.init_file}\n"
       end
     end
