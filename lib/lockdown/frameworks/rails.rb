@@ -55,11 +55,11 @@ module Lockdown
         end
 
         def controller_parent
-          ActionController::Base
+          ::ActionController::Base
         end
 
         def view_helper
-          ActionView::Base 
+          ::ActionView::Base 
         end
 
         def controller_class_name(str)
