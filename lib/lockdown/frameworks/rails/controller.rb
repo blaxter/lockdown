@@ -23,7 +23,7 @@ module Lockdown
           # Basic auth functionality needs to be reworked as 
           # Lockdown doesn't provide authentication functionality.
           def set_current_user
-            #login_from_basic_auth? unless logged_in?
+            login_from_basic_auth? unless logged_in?
             if logged_in?
               Thread.current[:who_did_it] = Lockdown::System.
                 call(self, :who_did_it)
@@ -141,13 +141,13 @@ module Lockdown
               redirect_to(session[:prevpage])
             end
           end
-  
+
           # Called from current_user.  Now, attempt to login by
           # basic authentication information.
           def login_from_basic_auth?
             username, passwd = get_auth_data
             if username && passwd
-              set_session_user ::User.authenticate(username, passwd)
+              add_lockdown_session_values ::User.authenticate(username, passwd)
             end
           end
 
