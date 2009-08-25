@@ -135,7 +135,7 @@ module Lockdown
           def login_from_basic_auth?
             username, passwd = get_auth_data
             if username && passwd
-              set_session_user ::User.authenticate(username, passwd)
+              add_lockdown_session_values ::User.authenticate(username, passwd)
             end
           end
 
